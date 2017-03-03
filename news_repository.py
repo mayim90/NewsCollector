@@ -6,7 +6,7 @@ class NewsRepository(object):
 
     def __init__(self, db_name):
         self._db_name = db_name
-        self._logger = Logger("log/log.txt")
+        self._logger = Logger()
 
     def add(self, parser):
         connection = None

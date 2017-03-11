@@ -20,10 +20,10 @@ class NewsRepository(object):
                     self._add_new_in_database(item, web_site_id)
             connection.commit()
             self._logger.inform("Information stored in the database")
-        except sqlite3.Error, e:
+        except sqlite3.Error as error:
             if connection:
                 connection.rollback()
-            self._logger.inform("Database error: {0}".format(e.args[0]))
+            self._logger.inform("Database error: {0}".format(error.args[0]))
         finally:
             if connection:
                 connection.close()
@@ -32,9 +32,9 @@ class NewsRepository(object):
         if not self._cursor:
             return
         self._cursor.execute("""
-                       select Id from WebSites
-                       where Name='{0}'
-                       """.format(web_site_name))
+                             select Id from WebSites
+                             where Name='{0}'
+                             """.format(web_site_name))
         return self._cursor.fetchone()[0]
 
     def _is_exists(self, news):

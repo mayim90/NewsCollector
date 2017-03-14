@@ -1,14 +1,14 @@
 from bs4 import BeautifulSoup
 
 
-class YandexParser(object):
+class LentaParser(object):
     """
-    Parses yandex.ru
+    Parses lenta.ru
     """
 
-    url = "https://www.yandex.ru/"
+    url = "https://lenta.ru/"
     # Web site id in database
-    id = 2
+    id = 3
 
     def __init__(self):
         self._html_doc = None
@@ -24,7 +24,6 @@ class YandexParser(object):
     def find_news(self):
         if not self._html_doc:
             return
-        news_div = self._html_doc.find(
-            "div", "content-tabs__items content-tabs__items_active_true")
+        news_div = self._html_doc.find("div", "items")
         for link in news_div.find_all("a"):
-            self._news.append(link.contents[0])
+            self._news.append(link.contents[1])

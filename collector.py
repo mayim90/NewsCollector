@@ -1,13 +1,15 @@
-from news_repository import NewsRepository
+from newsrepo import NewsRepository
 from parsers.yandex_parser import YandexParser
 from parsers.rambler_parser import RamblerParser
+from parsers.lenta_parser import LentaParser
 import downloading
 
 
 news_repository = NewsRepository(r"database/news.sqlite3")
 parsers = [
     YandexParser(),
-    RamblerParser()
+    RamblerParser(),
+    LentaParser(),
 ]
 
 

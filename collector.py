@@ -4,6 +4,7 @@ from parsers.rambler_parser import RamblerParser
 from parsers.lenta_parser import LentaParser
 from parsers.ria_parser import RiaParser
 from parsers.mail_parser import MailParser
+from parsers.rbc_parser import RbcParser
 import downloading
 
 
@@ -14,6 +15,7 @@ parsers = [
     LentaParser(),
     RiaParser(),
     MailParser(),
+    RbcParser(),
 ]
 
 

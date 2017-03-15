@@ -3,6 +3,7 @@ from parsers.yandex_parser import YandexParser
 from parsers.rambler_parser import RamblerParser
 from parsers.lenta_parser import LentaParser
 from parsers.ria_parser import RiaParser
+from parsers.mail_parser import MailParser
 import downloading
 
 
@@ -12,6 +13,7 @@ parsers = [
     RamblerParser(),
     LentaParser(),
     RiaParser(),
+    MailParser(),
 ]
 
 

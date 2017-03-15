@@ -1,3 +1,5 @@
-select Contents as Новость, DateTime as 'Время добавления', Name as Сайт  from News
-join WebSites
-where News.WebSiteId=WebSites.Id
+select Contents as 'Новость', 
+       Name as 'Новостной сайт',
+	   PostDate as 'Дата публикации'
+from News join WebSites
+on News.WebSiteId=WebSites.Id

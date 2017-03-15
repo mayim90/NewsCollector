@@ -26,4 +26,4 @@ class LentaParser(object):
             return
         news_div = self._html_doc.find("div", "items")
         for link in news_div.find_all("a"):
-            self._news.append(link.contents[1])
+            self._news.append(str(link.contents[1]))

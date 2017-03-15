@@ -27,4 +27,4 @@ class YandexParser(object):
         news_div = self._html_doc.find(
             "div", "content-tabs__items content-tabs__items_active_true")
         for link in news_div.find_all("a"):
-            self._news.append(link.contents[0])
+            self._news.append(str(link.contents[0]))

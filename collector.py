@@ -2,6 +2,7 @@ from newsrepo import NewsRepository
 from parsers.yandex_parser import YandexParser
 from parsers.rambler_parser import RamblerParser
 from parsers.lenta_parser import LentaParser
+from parsers.ria_parser import RiaParser
 import downloading
 
 
@@ -10,6 +11,7 @@ parsers = [
     YandexParser(),
     RamblerParser(),
     LentaParser(),
+    RiaParser(),
 ]
 
 

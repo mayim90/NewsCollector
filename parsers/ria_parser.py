@@ -1,14 +1,14 @@
 from bs4 import BeautifulSoup
 
 
-class RamblerParser(object):
+class RiaParser(object):
     """
-    Parses rambler.ru
+    Parses ria.ru
     """
 
-    url = "https://www.rambler.ru/"
+    url = "https://www.ria.ru//"
     # Web site id in database
-    id = 1
+    id = 4
 
     def __init__(self):
         self._html_doc = None
@@ -25,6 +25,7 @@ class RamblerParser(object):
         if not self._html_doc:
             return
         news_div = self._html_doc.find(
-            "div", "mixednews_itemsline mixednews_itemsline_double-height")
-        for span in news_div.find_all("span", "mixednews-item__title_text"):
-            self._news.append(str(span.contents[0]))
+            "div", "b-index__main-list-place")
+        for span in news_div.find_all("span"):
+            if span.contents and not str(span.contents[0]).endswith("</span>"):
+                self._news.append(str(span.contents[0]))

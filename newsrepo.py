@@ -28,7 +28,7 @@ class NewsRepository(object):
         try:
             self._cursor.execute("""
                 insert into News(Contents, WebSiteId, PostDate)
-                values ('{0}', {1}, datetime('now', 'localtime'))
+                values ('{0}', {1}, date('now'))
                 """.format(new, web_site_id))
         except sqlite3.Error as error:
             logger.inform("Database error: {0}".format(error.args[0]))

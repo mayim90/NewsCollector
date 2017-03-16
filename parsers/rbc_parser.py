@@ -27,4 +27,5 @@ class RbcParser(object):
         news_div = self._html_doc.find(
             "div", "main-feed js-main-reload-list")
         for span in news_div.find_all("span", "main-feed__item__title"):
-            self._news.append(str(span.contents[0]))
+            if span.contents:
+                self._news.append(str(span.contents[0]))

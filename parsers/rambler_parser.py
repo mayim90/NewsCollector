@@ -27,4 +27,5 @@ class RamblerParser(object):
         news_div = self._html_doc.find(
             "div", "mixednews_itemsline mixednews_itemsline_double-height")
         for span in news_div.find_all("span", "mixednews-item__title_text"):
-            self._news.append(str(span.contents[0]))
+            if span.contents:
+                self._news.append(str(span.contents[0]))

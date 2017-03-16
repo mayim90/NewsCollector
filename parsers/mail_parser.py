@@ -27,4 +27,5 @@ class MailParser(object):
         news_div = self._html_doc.find(
             "ul", "list list_type_square list_half js-module")
         for link in news_div.find_all("a", "list__text"):
-            self._news.append(str(link.contents[0]))
+            if link.contents:
+                self._news.append(str(link.contents[0]))

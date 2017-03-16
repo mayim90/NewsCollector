@@ -26,4 +26,5 @@ class KpParser(object):
             return
         news_div = self._html_doc.findfind("div", "loadSection")
         for div in news_div.find_all("div", "digestTitle"):
-            print(str(div.contents[0]))
+            if div.contents:
+                self._news.append(str(div.contents[0]))

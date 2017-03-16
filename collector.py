@@ -5,7 +5,10 @@ from parsers.lenta_parser import LentaParser
 from parsers.ria_parser import RiaParser
 from parsers.mail_parser import MailParser
 from parsers.rbc_parser import RbcParser
+from parsers.kp_parser import KpParser
+from parsers.vesti_parser import VestiParser
 import downloading
+from log import logger
 
 
 news_repository = NewsRepository(r"database/news.sqlite3")
@@ -16,6 +19,8 @@ parsers = [
     RiaParser(),
     MailParser(),
     RbcParser(),
+    KpParser(),
+    VestiParser(),
 ]
 
 
@@ -23,6 +28,8 @@ def collect_news():
     for parser in parsers:
         downloading.download_contents_into(parser)
         parser.find_news()
+        logger.inform("{0}. News downloaded: {1}".format(
+            parser.url, len(parser.news)))
         news_repository.add(parser)
 
 if __name__ == "__main__":

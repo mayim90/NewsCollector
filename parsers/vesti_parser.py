@@ -1,14 +1,14 @@
 from bs4 import BeautifulSoup
 
 
-class KpParser(object):
+class VestiParser(object):
     """
-    Parses kp.ru
+    Parses vesti.ru
     """
 
-    url = "http://www.kp.ru/"
+    url = "http://www.vesti.ru//"
     # Web site id in database
-    id = 7
+    id = 8
 
     def __init__(self):
         self._html_doc = None
@@ -24,7 +24,8 @@ class KpParser(object):
     def find_news(self):
         if not self._html_doc:
             return
-        news_div = self._html_doc.find("div", "loadSection")
-        for div in news_div.find_all("div", "digestTitle"):
-            if div.contents:
-                self._news.append(str(div.contents[0]))
+        news_headers = self._html_doc.find_all("h3", "b-item__title")
+        for h in news_headers:
+            a = h.find("a")
+            if a.contents:
+                self._news.append(str(a.contents[0]))

@@ -19,7 +19,8 @@ class NewsRepository(object):
         except sqlite3.Error as error:
             if connection:
                 connection.rollback()
-            logger.inform("Database error: {0}".format(error.args[0]))
+            logger.inform("Database error [{0}]: {1}".format(
+                type(error), error.args[0]))
         finally:
             if connection:
                 connection.close()
@@ -30,5 +31,9 @@ class NewsRepository(object):
                 insert into News(Contents, WebSiteId, PostDate)
                 values ('{0}', {1}, date('now'))
                 """.format(new, web_site_id))
+        except sqlite3.IntegrityError:
+            # The news already in database
+            pass
         except sqlite3.Error as error:
-            logger.inform("Database error: {0}".format(error.args[0]))
+            logger.inform("Database error [{0}]: {1}".format(
+                type(error), error.args[0]))

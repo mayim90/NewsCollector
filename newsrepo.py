@@ -30,10 +30,13 @@ class NewsRepository(object):
             self._cursor.execute("""
                 insert into News(Contents, WebSiteId, PostDate)
                 values ('{0}', {1}, date('now'))
-                """.format(new, web_site_id))
+                """.format(new.replace("'", "-"), web_site_id))
         except sqlite3.IntegrityError:
             # The news already in database
             pass
+        except sqlite3.OperationalError as error:
+            logger.inform("Syntax error[{0}]: {1} on new:\n{2}".format(
+                type(error), error, new))
         except sqlite3.Error as error:
             logger.inform("Database error [{0}]: {1}".format(
-                type(error), error.args[0]))
+                type(error), error))

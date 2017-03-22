@@ -25,15 +25,15 @@ parsers = [
 
 
 def collect_news():
-    total_news = 0
+    total = 0
     for parser in parsers:
         downloading.download_contents_into(parser)
         parser.find_news()
         logger.inform("{0}. News downloaded: {1}".format(
             parser.url, len(parser.news)))
         news_repository.add(parser)
-        total_news += len(parser.news)
-    logger.inform("Total news: {0}".format(total_news))
+        total += len(parser.news)
+    logger.inform("Total news: {0}".format(total))
 
 if __name__ == "__main__":
     collect_news()
